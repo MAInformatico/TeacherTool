@@ -1,13 +1,6 @@
 
 class Cambridge:
-    def Reading(self):
-        pass
+    
+    def percent_category(self, good, total):
+        return round(good/total,2)   
 
-    def Listening(self):
-        pass
-
-    def Writting(self):
-        pass
-
-    def Speaking(self):
-        pass
