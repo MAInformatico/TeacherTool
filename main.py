@@ -1,21 +1,23 @@
 from B2 import *
 from collections import defaultdict
-
-def default_value():
-    return "No existe ese alumno o nota"
+import pandas as pd
 
 
 if __name__ == "__main__":    
-    print("¿Cuantos alumnos tienes?")
+    print("¿Cuántos alumnos tienes?")
     students = int(input())
-    print("¿Se presentan a B1 o B2?")
+    print("¿Se presentan a B1 o B2?")    
     languageLevel = str(input())
+    print('¿Cuántos exámenes quieres evaluar?')
+    numExam = int(input())
     if languageLevel != "B1" or languageLevel != "B2":
         while(languageLevel != "B1" or languageLevel != "B2"):
             print("¿Se presentan a B1 o B2?")
             languageLevel = input()
     else:
-        group  = defaultdict(default_value)
-
-
-
+        alumno = { 'Nombre' : '', 'Notas' : [] }
+        for students in range(0,students-1):
+            print("Nombre del alumno")
+            name = str(input())
+            alumno['Nombre'] = name
+            print('')
