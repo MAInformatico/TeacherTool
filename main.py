@@ -20,4 +20,16 @@ if __name__ == "__main__":
             print("Nombre del alumno")
             name = str(input())
             alumno['Nombre'] = name
-            print('')
+            print('Reading')
+            print('Escribe los aciertos y el total')
+            reading = filter(str(input()))
+            print('Listening')
+            print('Escribe los aciertos y el total')
+            listening = filter(str(input()))
+            print('Writting')
+            print('Escribe los aciertos y el total')
+            writting = filter(str(input()))
+            print('Speaking \n =======')
+            print('Escribe los aciertos y el total')
+            speaking = filter(str(input()))
+

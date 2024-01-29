@@ -4,6 +4,11 @@ class Cambridge:
         self.name = str(n)
         self.test = int(num)
 
+    def filter(self, chain):
+        values = chain.split('/').strip()
+        return values
+
+
     def percent_category(self, good, total):        
         return round(good/total * 100, 2)
     
