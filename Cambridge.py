@@ -5,7 +5,8 @@ class Cambridge:
         self.test = int(num)
 
     def filter(self, chain):
-        values = chain.split('/').strip()
+        values = chain.split('/')
+        print (values)
         return values
 
 

@@ -12,17 +12,18 @@ def get_info(language_level, num_exam, students):
              "English_use": []
         }
 
-        text = "Escribe los aciertos y el total\n" + "Escribe el primer numero separado por una / y luego el segundo"        
+        text = "Escribe los aciertos y el total\n" + "Escribe el primer numero separado por una / y luego el segundo"                
         for num_exam in range(0,num_exam):
             for students in range(0,students):
                 print("Nombre del alumno")
                 name = str(input())
                 dict_results['Nombre'].append(name)
-                '''
+                instance = B2(name,num_exam)
                 print('Reading')
                 print(text)
-                reading = filter(str(input()))
+                reading = instance.filter(str(input()))
                 dict_results['Reading'].append(reading)
+                '''
                 print('Listening')
                 print(text)                
                 listening = filter(str(input()))
