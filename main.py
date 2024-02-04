@@ -23,25 +23,23 @@ def get_info(language_level, num_exam, students):
                 print(text)
                 reading = instance.filter(str(input()))
                 dict_results['Reading'].append(reading)
-                '''
                 print('Listening')
                 print(text)                
-                listening = filter(str(input()))
+                listening = instance.filter(str(input()))
                 dict_results['Listening'].append(listening)
                 print('Writting')
                 print(text)
-                writting = filter(str(input()))
+                writting = instance.filter(str(input()))
                 dict_results['Writting'].append(writting)
                 print('Speaking')
                 print(text)
-                speaking = filter(str(input()))
+                speaking = instance.filter(str(input()))
                 dict_results['Speaking'].append(speaking)
                 if language_level == "B2":
                     print('English use')
                     print(text)
-                    english_use = filter(str(input()))
+                    english_use = instance.filter(str(input()))
                     dict_results['English_use'].append(english_use)
-                    '''
         print(dict_results)
         return dict_results
 
