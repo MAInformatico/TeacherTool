@@ -1,5 +1,6 @@
 from B2 import *
 from collections import defaultdict
+from colorama import Fore
 import pandas as pd
 
 def get_info(language_level, num_exam, students):
@@ -19,24 +20,24 @@ def get_info(language_level, num_exam, students):
                 name = str(input())
                 dict_results['Nombre'].append(name)
                 instance = B2(name,num_exam)
-                print('Reading')
+                print(Fore.RED + 'Reading')
                 print(text)
                 reading = instance.filter(str(input()))
                 dict_results['Reading'].append(reading)
-                print('Listening')
+                print(Fore.YELLOW + 'Listening')
                 print(text)                
                 listening = instance.filter(str(input()))
                 dict_results['Listening'].append(listening)
-                print('Writting')
+                print(Fore.BLUE + 'Writting')
                 print(text)
                 writting = instance.filter(str(input()))
                 dict_results['Writting'].append(writting)
-                print('Speaking')
+                print(Fore.GREEN + 'Speaking')
                 print(text)
                 speaking = instance.filter(str(input()))
                 dict_results['Speaking'].append(speaking)
                 if language_level == "B2":
-                    print('English use')
+                    print(Fore.WHITE + 'English use')
                     print(text)
                     english_use = instance.filter(str(input()))
                     dict_results['English_use'].append(english_use)
@@ -55,5 +56,6 @@ if __name__ == "__main__":
         language_level = str(input())
         print(language_level)
     
-    dict_evaluaciones = pd.DataFrame(get_info(language_level,num_exam,students))    
+    #dict_evaluaciones = pd.DataFrame(get_info(language_level,num_exam,students)) 
+    get_info(language_level,num_exam,students)   
 
