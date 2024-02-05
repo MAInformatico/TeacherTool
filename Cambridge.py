@@ -11,7 +11,7 @@ class Cambridge:
 
 
     def percent_category(self, good, total):        
-        return round(good/total * 100, 2)
+        return round(int(good)/int(total) * 100, 2)
     
     def reading(self, reading_points, reading_total_points):
         return str(self.percent_category(reading_points,reading_total_points))

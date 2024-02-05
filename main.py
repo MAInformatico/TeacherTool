@@ -14,6 +14,7 @@ def get_info(language_level, num_exam, students):
         }
 
         text = "Escribe los aciertos y el total\n" + "Escribe el primer numero separado por una / y luego el segundo"                
+        underline = '========'
         for num_exam in range(0,num_exam):
             for students in range(0,students):
                 print("Nombre del alumno")
@@ -21,28 +22,39 @@ def get_info(language_level, num_exam, students):
                 dict_results['Nombre'].append(name)
                 instance = B2(name,num_exam)
                 print(Fore.RED + 'Reading')
+                print(underline)
                 print(text)
                 reading = instance.filter(str(input()))
-                dict_results['Reading'].append(reading)
+                result = instance.percent_category(reading[0],reading[1])
+                dict_results['Reading'].append(str(reading) + ' = ' + str(result))
                 print(Fore.YELLOW + 'Listening')
+                print(underline)
                 print(text)                
                 listening = instance.filter(str(input()))
-                dict_results['Listening'].append(listening)
+                result = instance.percent_category(listening[0],listening[1])
+                dict_results['Listening'].append(str(listening) + ' = ' + str(result))
                 print(Fore.BLUE + 'Writting')
+                print(underline)
                 print(text)
                 writting = instance.filter(str(input()))
-                dict_results['Writting'].append(writting)
+                result = instance.percent_category(writting[0],writting[1])
+                dict_results['Writting'].append(str(writting) + ' = ' + str(result))
                 print(Fore.GREEN + 'Speaking')
+                print(underline)
                 print(text)
                 speaking = instance.filter(str(input()))
-                dict_results['Speaking'].append(speaking)
+                result = instance.percent_category(speaking[0],speaking[1])
+                dict_results['Speaking'].append(str(speaking) + ' = ' + str(result))
                 if language_level == "B2":
                     print(Fore.WHITE + 'English use')
+                    print(underline)
                     print(text)
                     english_use = instance.filter(str(input()))
-                    dict_results['English_use'].append(english_use)
+                    result = instance.percent_category(english_use[0],english_use[1])
+                    dict_results['English_use'].append(str(english_use) + ' = ' + str(result))
         print(dict_results)
         return dict_results
+
 
 
 if __name__ == "__main__":
