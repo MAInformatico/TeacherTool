@@ -10,7 +10,9 @@ class Cambridge:
         return values
 
 
-    def percent_category(self, good, total):        
+    def percent_category(self, good, total):
+        if good and total == 'x' or 'X':
+            return 'X'        
         return round(int(good)/int(total) * 100, 2)
     
     def reading(self, reading_points, reading_total_points):
