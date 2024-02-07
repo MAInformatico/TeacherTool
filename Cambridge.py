@@ -6,12 +6,11 @@ class Cambridge:
 
     def filter(self, chain):
         values = chain.split('/')
-        print (values)
         return values
 
 
     def percent_category(self, good, total):
-        if good and total == 'x' or 'X':
+        if good and total == 'x' or 'X': #If one or more exam are missing ...
             return 'X'        
         return round(int(good)/int(total) * 100, 2)
     
