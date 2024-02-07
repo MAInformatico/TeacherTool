@@ -17,11 +17,11 @@ def get_info(language_level, num_exam, students):
         underline = '========'
         
         for students in range(0,students):
-            print("Nombre del alumno")
+            print(Fore.WHITE + "Nombre del alumno")
             name = str(input())
             dict_results['Nombre'].append(name)
             instance = B2(name,num_exam)
-            for num_exam in range(0,num_exam):            
+            for iterator in range(0,num_exam):            
                 #Reading
                 print(Fore.RED + 'Reading')
                 print(underline)
@@ -58,6 +58,7 @@ def get_info(language_level, num_exam, students):
                     english_use = instance.filter(str(input()))
                     result = instance.percent_category(english_use[0],english_use[1])
                     dict_results['English_use'].append(str(english_use) + ' = ' + str(result))
+                iterator += 1
         print(dict_results)
         return dict_results
 
