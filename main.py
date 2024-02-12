@@ -63,6 +63,8 @@ def get_info(language_level, num_exam, students):
                     result = instance.percent_category(english_use[0],english_use[1])
                     dict_results['English_use'].append(str(english_use))
                     #dict_results['English_use'].append(str(english_use) + ' = ' + str(result))
+                else: #It is a B1 exam
+                     dict_results['English_use'].append(str('X'))
                 iterator += 1
         #print(dict_results)
         return dict_results
