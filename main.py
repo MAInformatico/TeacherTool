@@ -21,6 +21,7 @@ def get_info(language_level, num_exam, students):
             name = str(input())
             dict_results['Nombre'].append(name)
             instance = B2(name,num_exam)
+            array_averages = []
             for iterator in range(0,num_exam):            
                 #Reading
                 print(Fore.RED + 'Reading')
