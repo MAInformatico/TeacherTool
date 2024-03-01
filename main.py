@@ -2,6 +2,7 @@ from B2 import *
 from collections import defaultdict
 from colorama import Fore
 import pandas as pd
+import numpy as np
 
 def get_info(language_level, num_exam, students):
         dict_results = {
@@ -10,7 +11,9 @@ def get_info(language_level, num_exam, students):
              'Listening': [],
              'Writting': [],
              'Speaking': [],
-             'English_use': []
+             'English_use': []#,
+             #'Overall': []
+             
         }
 
         text = "Escribe los aciertos y el total\n" + "Escribe el primer numero separado por una / y luego el segundo"                
@@ -21,7 +24,6 @@ def get_info(language_level, num_exam, students):
             name = str(input())
             dict_results['Nombre'].append(name)
             instance = B2(name,num_exam)
-            array_averages = []
             for iterator in range(0,num_exam):            
                 #Reading
                 print(Fore.RED + 'Reading')
@@ -65,7 +67,9 @@ def get_info(language_level, num_exam, students):
                     dict_results['English_use'].append(str(english_use))
                     #dict_results['English_use'].append(str(english_use) + ' = ' + str(result))
                 else: #It is a B1 exam
-                     dict_results['English_use'].append(str('X'))
+                    dict_results['English_use'].append(str('X'))
+                #calculate average and insert in Overall array
+                    #dict_results['Overall'].append(np.mean([10,20,30]))
                 iterator += 1
         #print(dict_results)
         return dict_results
