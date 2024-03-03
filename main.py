@@ -4,6 +4,7 @@ from colorama import Fore
 import pandas as pd
 import numpy as np
 
+
 def get_info(language_level, num_exam, students):
         dict_results = {
              'Nombre' : [],
@@ -34,7 +35,7 @@ def get_info(language_level, num_exam, students):
                 result = instance.percent_category(int(reading[0]),int(reading[1]))
                 #print(result)
                 averageTest.append(result)
-                dict_results['Reading'].append(str(aux))
+                dict_results['Reading'].append(str(aux) + ' = ' + str(result))
                 #dict_results['Reading'].append(str(reading) + ' = ' + str(result))
                 #Listening
                 print(Fore.YELLOW + 'Listening')
@@ -44,7 +45,8 @@ def get_info(language_level, num_exam, students):
                 listening = instance.filter(aux)
                 result = instance.percent_category(listening[0],listening[1])
                 averageTest.append(result)
-                dict_results['Listening'].append(str(aux))
+                #dict_results['Listening'].append(str(aux))
+                dict_results['Listening'].append(str(aux) + ' = ' + str(result))
                 #dict_results['Listening'].append(str(listening) + ' = ' + str(result))
                 #Writting
                 print(Fore.BLUE + 'Writting')
@@ -54,7 +56,8 @@ def get_info(language_level, num_exam, students):
                 writting = instance.filter(aux)
                 result = instance.percent_category(writting[0],writting[1])
                 averageTest.append(result)
-                dict_results['Writting'].append(str(aux))
+                #dict_results['Writting'].append(str(aux))
+                dict_results['Writting'].append(str(aux) + ' = ' + str(result))
                 #dict_results['Writting'].append(str(writting) + ' = ' + str(result))
                 #Speaking
                 print(Fore.GREEN + 'Speaking')
@@ -64,7 +67,8 @@ def get_info(language_level, num_exam, students):
                 speaking = instance.filter(aux)
                 result = instance.percent_category(speaking[0],speaking[1])
                 averageTest.append(result)
-                dict_results['Speaking'].append(aux)
+                #dict_results['Speaking'].append(aux)
+                dict_results['Speaking'].append(str(aux) + ' = ' + str(result))
                 #dict_results['Speaking'].append(str(speaking) + ' = ' + str(result))
                 if language_level == "B2":
                     #English use
@@ -75,7 +79,8 @@ def get_info(language_level, num_exam, students):
                     english_use = instance.filter(aux)
                     result = instance.percent_category(english_use[0],english_use[1])
                     averageTest.append(result)
-                    dict_results['English_use'].append(aux)
+                    #dict_results['English_use'].append(aux)
+                    dict_results['English_use'].append(str(aux) + ' = ' + str(result))
                     #dict_results['English_use'].append(str(english_use) + ' = ' + str(result))
                 else: #It is a B1 exam
                     dict_results['English_use'].append(str('X'))
@@ -100,6 +105,8 @@ if __name__ == "__main__":
     
     #dict_notes = get_info(language_level,num_exam,students)
     #dict_evaluaciones = pd.DataFrame(dict_notes)
-    print(get_info(language_level,num_exam,students))
+    #print(get_info(language_level,num_exam,students))
     #print(dict_evaluaciones)   
-
+    dict_notes = get_info(language_level,num_exam,students)    
+    #for i in dict_notes.items():
+         #print(i)    
