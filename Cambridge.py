@@ -10,8 +10,9 @@ class Cambridge:
 
 
     def percent_category(self, good, total):
-        if good and total == 'x' or 'X': #If one or more exam are missing ...
-            return 'X'        
+        if (good == 'X') or (total =='X'): #If one or more exam are missing ...
+            return 'X'     
+        
         return round(int(good)/int(total) * 100, 2)
     
     def reading(self, reading_points, reading_total_points):
