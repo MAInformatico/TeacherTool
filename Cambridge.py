@@ -27,7 +27,3 @@ class Cambridge:
     def speaking(self,speaking_points,speaking_total_points):
         return str(self.percent_category(speaking_points,speaking_total_points))
     
-    def areaAverage(self, dictionary):
-        
-        pass
-
