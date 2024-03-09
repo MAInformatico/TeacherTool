@@ -101,12 +101,16 @@ def get_info(language_level, num_exam, students,averageReading,averageListening,
                     print(underline)
                     print(text)
                     aux = str(input())
-                    english_use = instance.filter(aux)
-                    result = instance.percent_category(english_use[0],english_use[1])
-                    average_test.append(result)
-                    avg_englishUse.append(result)
+                    if not aux:
+                        result = 'X'
+                        dict_results['Speaking'].append(str(aux) + ' = ' + str(result))
+                    else:
+                        english_use = instance.filter(aux)                    
+                        result = instance.percent_category(english_use[0],english_use[1])
+                        average_test.append(result)
+                        avg_englishUse.append(result)
                     #dict_results['English_use'].append(aux)
-                    dict_results['English_use'].append(str(aux) + ' = ' + str(result))
+                        dict_results['English_use'].append(str(aux) + ' = ' + str(result))
                     #dict_results['English_use'].append(str(english_use) + ' = ' + str(result))
                 else: #It is a B1 exam
                     dict_results['English_use'].append(str('X'))
