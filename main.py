@@ -1,18 +1,17 @@
 from B2 import *
-from collections import defaultdict
 from colorama import Fore
 import numpy as np
 
 
 def get_info(language_level, num_exam, students,averageReading,averageListening,averageSpeaking,averageWritting,averageEnglishUse):
         dict_results = {
-             'Nombre' : [],
-             'Reading': [],
-             'Listening': [],
-             'Writting': [],
-             'Speaking': [],
-             'English_use': [],
-             'Overall': []             
+            'Nombre' : [],
+            'Reading': [],
+            'Listening': [],
+            'Writting': [],
+            'Speaking': [],
+            'English_use': [],
+            'Overall': []             
         }
 
         text = "Escribe los aciertos y el total\n" + "Escribe el primer numero separado por una / y luego el segundo"                
@@ -37,8 +36,8 @@ def get_info(language_level, num_exam, students,averageReading,averageListening,
                 print(text)
                 aux = str(input())
                 if not aux:
-                     result = 'X'
-                     dict_results['Reading'].append(str(aux) + ' = ' + str(result))
+                    result = 'X'
+                    dict_results['Reading'].append(str(aux) + ' = ' + str(result))
                 else:
                     reading = instance.filter(aux)
                     result = instance.percent_category(int(reading[0]),int(reading[1]))
@@ -53,8 +52,8 @@ def get_info(language_level, num_exam, students,averageReading,averageListening,
                 print(text)
                 aux = str(input())                
                 if not aux:
-                     result = 'X'
-                     dict_results['Listening'].append(str(aux) + ' = ' + str(result))
+                    result = 'X'
+                    dict_results['Listening'].append(str(aux) + ' = ' + str(result))
                 else:
                     listening = instance.filter(aux)
                     result = instance.percent_category(listening[0],listening[1])
@@ -69,8 +68,8 @@ def get_info(language_level, num_exam, students,averageReading,averageListening,
                 print(text)
                 aux = str(input())
                 if not aux:
-                     result = 'X'
-                     dict_results['Writting'].append(str(aux) + ' = ' + str(result))
+                    result = 'X'
+                    dict_results['Writting'].append(str(aux) + ' = ' + str(result))
                 else:
                     writting = instance.filter(aux)
                     result = instance.percent_category(writting[0],writting[1])
@@ -85,8 +84,8 @@ def get_info(language_level, num_exam, students,averageReading,averageListening,
                 print(text)
                 aux = str(input())
                 if not aux:
-                     result = 'X'
-                     dict_results['Speaking'].append(str(aux) + ' = ' + str(result))
+                    result = 'X'
+                    dict_results['Speaking'].append(str(aux) + ' = ' + str(result))
                 else:
                     speaking = instance.filter(aux)
                     result = instance.percent_category(speaking[0],speaking[1])
