@@ -36,48 +36,64 @@ def get_info(language_level, num_exam, students,averageReading,averageListening,
                 print(underline)
                 print(text)
                 aux = str(input())
-                reading = instance.filter(aux)
-                result = instance.percent_category(int(reading[0]),int(reading[1]))
+                if not aux:
+                     result = 'X'
+                     dict_results['Reading'].append(str(aux) + ' = ' + str(result))
+                else:
+                    reading = instance.filter(aux)
+                    result = instance.percent_category(int(reading[0]),int(reading[1]))
                 #print(result)
-                average_test.append(result)
-                avg_reading.append(result)
-                dict_results['Reading'].append(str(aux) + ' = ' + str(result))
+                    average_test.append(result)
+                    avg_reading.append(result)
+                    dict_results['Reading'].append(str(aux) + ' = ' + str(result))
                 #dict_results['Reading'].append(str(reading) + ' = ' + str(result))
                 #Listening
                 print(Fore.YELLOW + 'Listening')
                 print(underline)
                 print(text)
                 aux = str(input())                
-                listening = instance.filter(aux)
-                result = instance.percent_category(listening[0],listening[1])
-                average_test.append(result)
-                avg_listening.append(result)
+                if not aux:
+                     result = 'X'
+                     dict_results['Listening'].append(str(aux) + ' = ' + str(result))
+                else:
+                    listening = instance.filter(aux)
+                    result = instance.percent_category(listening[0],listening[1])
+                    average_test.append(result)
+                    avg_listening.append(result)
                 #dict_results['Listening'].append(str(aux))
-                dict_results['Listening'].append(str(aux) + ' = ' + str(result))
+                    dict_results['Listening'].append(str(aux) + ' = ' + str(result))
                 #dict_results['Listening'].append(str(listening) + ' = ' + str(result))
                 #Writting
                 print(Fore.BLUE + 'Writting')
                 print(underline)
                 print(text)
                 aux = str(input())
-                writting = instance.filter(aux)
-                result = instance.percent_category(writting[0],writting[1])
-                average_test.append(result)
-                avg_writting.append(result)
-                #dict_results['Writting'].append(str(aux))
-                dict_results['Writting'].append(str(aux) + ' = ' + str(result))
+                if not aux:
+                     result = 'X'
+                     dict_results['Writting'].append(str(aux) + ' = ' + str(result))
+                else:
+                    writting = instance.filter(aux)
+                    result = instance.percent_category(writting[0],writting[1])
+                    average_test.append(result)
+                    avg_writting.append(result)
+                    #dict_results['Writting'].append(str(aux))
+                    dict_results['Writting'].append(str(aux) + ' = ' + str(result))
                 #dict_results['Writting'].append(str(writting) + ' = ' + str(result))
                 #Speaking
                 print(Fore.GREEN + 'Speaking')
                 print(underline)
                 print(text)
                 aux = str(input())
-                speaking = instance.filter(aux)
-                result = instance.percent_category(speaking[0],speaking[1])
-                average_test.append(result)
-                avg_speaking.append(result)
+                if not aux:
+                     result = 'X'
+                     dict_results['Speaking'].append(str(aux) + ' = ' + str(result))
+                else:
+                    speaking = instance.filter(aux)
+                    result = instance.percent_category(speaking[0],speaking[1])
+                    average_test.append(result)
+                    avg_speaking.append(result)
                 #dict_results['Speaking'].append(aux)
-                dict_results['Speaking'].append(str(aux) + ' = ' + str(result))
+                    dict_results['Speaking'].append(str(aux) + ' = ' + str(result))
                 #dict_results['Speaking'].append(str(speaking) + ' = ' + str(result))
                 if language_level == "B2":
                     #English use
