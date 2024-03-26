@@ -3,7 +3,7 @@ from colorama import Fore
 import numpy as np
 
 
-def get_info(language_level, num_exam, students,averageReading,averageListening,averageSpeaking,averageWritting,averageUseEnglish):
+def get_info(language_level, num_exam, students,average_reading,average_listening,average_speaking,average_writting,average_use_english):
         dict_results = {
             'Nombre' : [],
             'Reading': [],
@@ -27,8 +27,8 @@ def get_info(language_level, num_exam, students,averageReading,averageListening,
             avg_listening = []
             avg_writting = []
             avg_speaking = []
-            avg_useEnglish = []
-            for iterator in range(0,num_exam):            
+            avg_use_english = []
+            for _ in range(0,num_exam):            
                 average_test = []
                 #Reading
                 print(Fore.RED + 'Reading')
@@ -107,7 +107,7 @@ def get_info(language_level, num_exam, students,averageReading,averageListening,
                         english_use = instance.filter(aux)                    
                         result = instance.percent_category(english_use[0],english_use[1])
                         average_test.append(result)
-                        avg_useEnglish.append(result)
+                        avg_use_english.append(result)
                     #dict_results['English_use'].append(aux)
                         dict_results['Use_English'].append(str(aux) + ' = ' + str(result))
                     #dict_results['English_use'].append(str(english_use) + ' = ' + str(result))
@@ -115,12 +115,11 @@ def get_info(language_level, num_exam, students,averageReading,averageListening,
                     dict_results['Use_English'].append(str('X'))
                 #calculate average and insert in Overall array
                 dict_results['Overall'].append(np.mean(average_test))                
-                iterator += 1
-            averageReading.append(np.mean(avg_reading))
-            averageListening.append(np.mean(avg_listening))
-            averageWritting.append(np.mean(avg_writting))
-            averageSpeaking.append(np.mean(avg_speaking))
-            averageUseEnglish.append(np.mean(avg_useEnglish))
+            average_reading.append(np.mean(avg_reading))
+            average_listening.append(np.mean(avg_listening))
+            average_writting.append(np.mean(avg_writting))
+            average_speaking.append(np.mean(avg_speaking))
+            average_use_english.append(np.mean(avg_use_english))
         #print(dict_results)
         return dict_results
 
