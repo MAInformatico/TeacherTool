@@ -1,16 +1,16 @@
-from B2 import *
+from B2 import B2
 from colorama import Fore
 import numpy as np
 
 
-def get_info(language_level, num_exam, students,averageReading,averageListening,averageSpeaking,averageWritting,averageEnglishUse):
+def get_info(language_level, num_exam, students,averageReading,averageListening,averageSpeaking,averageWritting,averageUseEnglish):
         dict_results = {
             'Nombre' : [],
             'Reading': [],
             'Listening': [],
             'Writting': [],
             'Speaking': [],
-            'English_use': [],
+            'Use_English': [],
             'Overall': []             
         }
 
@@ -27,7 +27,7 @@ def get_info(language_level, num_exam, students,averageReading,averageListening,
             avg_listening = []
             avg_writting = []
             avg_speaking = []
-            avg_englishUse = []
+            avg_useEnglish = []
             for iterator in range(0,num_exam):            
                 average_test = []
                 #Reading
@@ -107,12 +107,12 @@ def get_info(language_level, num_exam, students,averageReading,averageListening,
                         english_use = instance.filter(aux)                    
                         result = instance.percent_category(english_use[0],english_use[1])
                         average_test.append(result)
-                        avg_englishUse.append(result)
+                        avg_useEnglish.append(result)
                     #dict_results['English_use'].append(aux)
-                        dict_results['English_use'].append(str(aux) + ' = ' + str(result))
+                        dict_results['Use_English'].append(str(aux) + ' = ' + str(result))
                     #dict_results['English_use'].append(str(english_use) + ' = ' + str(result))
                 else: #It is a B1 exam
-                    dict_results['English_use'].append(str('X'))
+                    dict_results['Use_English'].append(str('X'))
                 #calculate average and insert in Overall array
                 dict_results['Overall'].append(np.mean(average_test))                
                 iterator += 1
@@ -120,7 +120,7 @@ def get_info(language_level, num_exam, students,averageReading,averageListening,
             averageListening.append(np.mean(avg_listening))
             averageWritting.append(np.mean(avg_writting))
             averageSpeaking.append(np.mean(avg_speaking))
-            averageEnglishUse.append(np.mean(avg_englishUse))
+            averageUseEnglish.append(np.mean(avg_useEnglish))
         #print(dict_results)
         return dict_results
 
@@ -143,13 +143,13 @@ if __name__ == "__main__":
     averageListening = []
     averageWritting = []
     averageSpeaking = []
-    averageEnglishUse = []    
+    averageUseEnglish = []    
 
     #Showing info by terminal
     #========================
 
     
-    dict_notes = get_info(language_level,num_exam,students,averageReading,averageListening,averageSpeaking,averageWritting,averageEnglishUse)    
+    dict_notes = get_info(language_level,num_exam,students,averageReading,averageListening,averageSpeaking,averageWritting,averageUseEnglish)    
     fichero = open('Examenes.txt', 'w')
     fichero.write("Estos son los resultados de los examenes o del examen que has insertado:\n")
     fichero.write('\n'.join("{}: {}".format(k, v) for k, v in dict_notes.items()))    
@@ -173,7 +173,7 @@ if __name__ == "__main__":
     fichero.write("\n")
     if language_level != 'B1':
         fichero.write("English Use:")
-        fichero.write(str(averageEnglishUse))
+        fichero.write(str(averageUseEnglish))
         fichero.write("\n")
     fichero.write("Fin de las medias por área\n")    
     fichero.close()
