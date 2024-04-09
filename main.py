@@ -94,7 +94,7 @@ def get_info(language_level, num_exam, students,average_reading,average_listenin
                 #dict_results['Speaking'].append(aux)
                     dict_results['Speaking'].append(str(aux) + ' = ' + str(result))
                 #dict_results['Speaking'].append(str(speaking) + ' = ' + str(result))
-                if language_level == "B2":
+                if language_level[0] == "B2" and language_level[1] == 2:
                     #English use
                     print(Fore.WHITE + 'English use')
                     print(underline)
@@ -102,7 +102,7 @@ def get_info(language_level, num_exam, students,average_reading,average_listenin
                     aux = str(input())
                     if not aux:
                         result = 'X'
-                        dict_results['Speaking'].append(str(aux) + ' = ' + str(result))
+                        dict_results['Use_English'].append(str(aux) + ' = ' + str(result))
                     else:
                         english_use = instance.filter(aux)                    
                         result = instance.percent_category(english_use[0],english_use[1])
@@ -125,16 +125,18 @@ def get_info(language_level, num_exam, students,average_reading,average_listenin
 
 
 if __name__ == "__main__":
-    language_level = " "
+    language_level = [" "]
     print("¿Cuántos alumnos tienes?")
     students = int(input())
     print('¿Cuántos exámenes quieres evaluar?')
     num_exam = int(input())
-    while(language_level != "B1" and language_level != "B2"):
+    while(language_level[0] != "B1" and language_level[0] != "B2"):
         print("¿Se presentan a B1 o B2?")
-        language_level = str(input())
-        print(language_level)
-    
+        language_level[0] = str(input())
+        print(language_level[0])
+        if language_level[0] == "B2":
+            print("¿Son alumnos de primer o segundo año? (escribe 1 o 2)")
+            language_level.append(int(input()))
 
     #storing averages
     
