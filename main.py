@@ -3,7 +3,7 @@ from colorama import Fore
 import numpy as np
 
 
-def get_info(language_level, num_exam, students,average_reading,average_listening,average_speaking,average_writting,average_use_english):
+def get_info(language_level, num_exam, students,average_overall,average_reading,average_listening,average_speaking,average_writting,average_use_english):
         dict_results = {
             'Nombre' : [],
             'Reading': [],
@@ -115,6 +115,7 @@ def get_info(language_level, num_exam, students,average_reading,average_listenin
                     dict_results['Use_English'].append(str('X'))
                 #calculate average and insert in Overall array
                 dict_results['Overall'].append(np.mean(average_test))                
+            average_overall.append(np.mean(average_test))
             average_reading.append(np.mean(avg_reading))
             average_listening.append(np.mean(avg_listening))
             average_writting.append(np.mean(avg_writting))
@@ -140,6 +141,7 @@ if __name__ == "__main__":
 
     #storing averages
     
+    averageOverall = []
     averageReading = []
     averageListening = []
     averageWritting = []
@@ -150,7 +152,7 @@ if __name__ == "__main__":
     #========================
 
     
-    dict_notes = get_info(language_level,num_exam,students,averageReading,averageListening,averageSpeaking,averageWritting,averageUseEnglish)    
+    dict_notes = get_info(language_level,num_exam,students,averageOverall,averageReading,averageListening,averageSpeaking,averageWritting,averageUseEnglish)    
     fichero = open('Examenes.txt', 'w')
     fichero.write("Estos son los resultados de los examenes o del examen que has insertado:\n")
     fichero.write('\n'.join("{}: {}".format(k, v) for k, v in dict_notes.items()))    
@@ -176,6 +178,9 @@ if __name__ == "__main__":
         fichero.write("English Use:")
         fichero.write(str(averageUseEnglish))
         fichero.write("\n")
+    fichero.write("Overall:")
+    fichero.write(str(averageOverall))
+    fichero.write("\n")
     fichero.write("Fin de las medias por área\n")    
     fichero.close()
 
