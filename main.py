@@ -3,12 +3,12 @@ from colorama import Fore
 import numpy as np
 
 
-def get_info(language_level, num_exam, students,average_overall,average_reading,average_listening,average_speaking,average_writting,average_use_english):
+def get_info(language_level, num_exam, students,average_overall,average_reading,average_listening,average_speaking,average_writing,average_use_english):
         dict_results = {
             'Nombre' : [],
             'Reading': [],
             'Listening': [],
-            'Writting': [],
+            'Writing': [],
             'Speaking': [],
             'Use_English': [],
             'Overall': []             
@@ -25,7 +25,7 @@ def get_info(language_level, num_exam, students,average_overall,average_reading,
             instance = B2(name,num_exam)
             avg_reading = []
             avg_listening = []
-            avg_writting = []
+            avg_writing = []
             avg_speaking = []
             avg_use_english = []
             for _ in range(0,num_exam):            
@@ -63,21 +63,21 @@ def get_info(language_level, num_exam, students,average_overall,average_reading,
                     dict_results['Listening'].append(str(aux) + ' = ' + str(result))
                 #dict_results['Listening'].append(str(listening) + ' = ' + str(result))
                 #Writting
-                print(Fore.BLUE + 'Writting')
+                print(Fore.BLUE + 'Writing')
                 print(underline)
                 print(text)
                 aux = str(input())
                 if not aux:
                     result = 'X'
-                    dict_results['Writting'].append(str(aux) + ' = ' + str(result))
+                    dict_results['Writing'].append(str(aux) + ' = ' + str(result))
                 else:
-                    writting = instance.filter(aux)
-                    result = instance.percent_category(writting[0],writting[1])
+                    writing = instance.filter(aux)
+                    result = instance.percent_category(writing[0],writing[1])
                     average_test.append(result)
-                    avg_writting.append(result)
-                    #dict_results['Writting'].append(str(aux))
-                    dict_results['Writting'].append(str(aux) + ' = ' + str(result))
-                #dict_results['Writting'].append(str(writting) + ' = ' + str(result))
+                    avg_writing.append(result)
+                    #dict_results['Writing'].append(str(aux))
+                    dict_results['Writing'].append(str(aux) + ' = ' + str(result))
+                #dict_results['Writing'].append(str(writing) + ' = ' + str(result))
                 #Speaking
                 print(Fore.GREEN + 'Speaking')
                 print(underline)
@@ -118,7 +118,7 @@ def get_info(language_level, num_exam, students,average_overall,average_reading,
             average_overall.append(np.mean(average_test))
             average_reading.append(np.mean(avg_reading))
             average_listening.append(np.mean(avg_listening))
-            average_writting.append(np.mean(avg_writting))
+            average_writing.append(np.mean(avg_writing))
             average_speaking.append(np.mean(avg_speaking))
             average_use_english.append(np.mean(avg_use_english))
         #print(dict_results)
@@ -144,7 +144,7 @@ if __name__ == "__main__":
     averageOverall = []
     averageReading = []
     averageListening = []
-    averageWritting = []
+    averageWriting = []
     averageSpeaking = []
     averageUseEnglish = []    
 
@@ -152,7 +152,7 @@ if __name__ == "__main__":
     #========================
 
     
-    dict_notes = get_info(language_level,num_exam,students,averageOverall,averageReading,averageListening,averageSpeaking,averageWritting,averageUseEnglish)    
+    dict_notes = get_info(language_level,num_exam,students,averageOverall,averageReading,averageListening,averageSpeaking,averageWriting,averageUseEnglish)    
     fichero = open('Examenes.txt', 'w')
     fichero.write("Estos son los resultados de los examenes o del examen que has insertado:\n")
     fichero.write('\n'.join("{}: {}".format(k, v) for k, v in dict_notes.items()))    
@@ -168,8 +168,8 @@ if __name__ == "__main__":
     fichero.write("Listening:")
     fichero.write(str(averageListening))
     fichero.write("\n")
-    fichero.write("Writting:")
-    fichero.write(str(averageWritting))
+    fichero.write("Writing:")
+    fichero.write(str(averageWriting))
     fichero.write("\n")
     fichero.write("Speaking:")
     fichero.write(str(averageSpeaking))
@@ -200,8 +200,8 @@ if __name__ == "__main__":
     print(averageReading)
     print("Listening:")
     print(averageListening)
-    print("Writting:")
-    print(averageWritting)
+    print("Writing:")
+    print(averageWriting)
     print("Speaking:")
     print(averageSpeaking)
     if language_level != 'B1':
