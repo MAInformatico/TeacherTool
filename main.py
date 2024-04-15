@@ -174,7 +174,7 @@ if __name__ == "__main__":
     fichero.write("Speaking:")
     fichero.write(str(averageSpeaking))
     fichero.write("\n")
-    if language_level != 'B1':
+    if language_level[0] != 'B1':
         fichero.write("English Use:")
         fichero.write(str(averageUseEnglish))
         fichero.write("\n")
