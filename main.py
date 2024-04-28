@@ -183,29 +183,3 @@ if __name__ == "__main__":
     fichero.write("\n")
     fichero.write("Fin de las medias por área\n")    
     fichero.close()
-
-
-
-
-    """   
-    print(Fore.WHITE + "Estos son los resultados de los examenes o del examen que has insertado:\n")
-
-    print('\n'.join("{}: {}".format(k, v) for k, v in dict_notes.items()))
-    print("\n")
-    
-    arrayStudents = dict_notes
-    print("Los alumnos " + str(dict_notes['Nombre']) + "han obtenido las siguientes medias por área:\n")
-    print(str(dict_notes['Nombre']))
-    print("Reading:")
-    print(averageReading)
-    print("Listening:")
-    print(averageListening)
-    print("Writing:")
-    print(averageWriting)
-    print("Speaking:")
-    print(averageSpeaking)
-    if language_level != 'B1':
-        print("English Use:")
-        print(averageEnglishUse)
-    print("Fin de las medias por área\n")    
-    """
