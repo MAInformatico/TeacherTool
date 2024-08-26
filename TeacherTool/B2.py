@@ -1,4 +1,4 @@
-from B1 import B1
+from .B1 import B1
 
 class B2(B1):
 

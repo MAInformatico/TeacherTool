@@ -1,4 +1,4 @@
-from B2 import B2
+from  TeacherTool.B2 import B2
 from colorama import Fore
 import numpy as np
 
@@ -114,13 +114,16 @@ def get_info(language_level, num_exam, students,average_overall,average_reading,
                 else: #It is a B1 exam
                     dict_results['Use_English'].append(str('X'))
                 #calculate average and insert in Overall array
-                dict_results['Overall'].append(np.mean(average_test))                
-            average_overall.append(np.mean(average_test))
+                aux = np.mean(average_test)
+                dict_results['Overall'].append(aux)                
+            average_overall.append(aux)
             average_reading.append(np.mean(avg_reading))
             average_listening.append(np.mean(avg_listening))
             average_writing.append(np.mean(avg_writing))
             average_speaking.append(np.mean(avg_speaking))
-            average_use_english.append(np.mean(avg_use_english))
+            if language_level[0] == "B2" and language_level[1] == 2:
+                average_use_english.append(np.mean(avg_use_english))
+            
         #print(dict_results)
         return dict_results
 
@@ -151,7 +154,8 @@ if __name__ == "__main__":
     #Showing info by terminal
     #========================
 
-    
+    valuetoclean = "np.float64("
+
     dict_notes = get_info(language_level,num_exam,students,averageOverall,averageReading,averageListening,averageSpeaking,averageWriting,averageUseEnglish)    
     fichero = open('Examenes.txt', 'w')
     fichero.write("Estos son los resultados de los examenes o del examen que has insertado:\n")
@@ -163,23 +167,23 @@ if __name__ == "__main__":
     fichero.write(str(dict_notes['Nombre']))
     fichero.write("\n")
     fichero.write("Reading:")
-    fichero.write(str(averageReading))
+    fichero.write(str(averageReading).replace(valuetoclean,'').replace(')',''))
     fichero.write("\n")
     fichero.write("Listening:")
-    fichero.write(str(averageListening))
+    fichero.write(str(averageListening).replace(valuetoclean,'').replace(')',''))
     fichero.write("\n")
     fichero.write("Writing:")
-    fichero.write(str(averageWriting))
+    fichero.write(str(averageWriting).replace(valuetoclean,'').replace(')',''))
     fichero.write("\n")
     fichero.write("Speaking:")
-    fichero.write(str(averageSpeaking))
+    fichero.write(str(averageSpeaking).replace(valuetoclean,'').replace(')',''))
     fichero.write("\n")
     if language_level[0] != 'B1':
         fichero.write("English Use:")
-        fichero.write(str(averageUseEnglish))
+        fichero.write(str(averageUseEnglish).replace(valuetoclean,'').replace(')',''))
         fichero.write("\n")
     fichero.write("Overall:")
-    fichero.write(str(averageOverall))
+    fichero.write(str(averageOverall).replace(valuetoclean,'').replace(')',''))
     fichero.write("\n")
     fichero.write("Fin de las medias por área\n")    
     fichero.close()
