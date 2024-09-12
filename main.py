@@ -1,6 +1,8 @@
 from  TeacherTool.B2 import B2
 from colorama import Fore
 import numpy as np
+from docx import Document
+import docxedit
 
 
 def get_info(language_level, num_exam, students,average_overall,average_reading,average_listening,average_speaking,average_writing,average_use_english):
@@ -154,9 +156,15 @@ if __name__ == "__main__":
     #Showing info by terminal
     #========================
 
-    valuetoclean = "np.float64("
-
     dict_notes = get_info(language_level,num_exam,students,averageOverall,averageReading,averageListening,averageSpeaking,averageWriting,averageUseEnglish)    
+
+
+    document = Document('test.docx')
+    docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=1, new_string='Hello')
+    document.save('test.docx')
+
+    '''
+    valuetoclean = "np.float64("
     fichero = open('Examenes.txt', 'w')
     fichero.write("Estos son los resultados de los examenes o del examen que has insertado:\n")
     fichero.write('\n'.join("{}: {}".format(k, v) for k, v in dict_notes.items()))    
@@ -187,3 +195,4 @@ if __name__ == "__main__":
     fichero.write("\n")
     fichero.write("Fin de las medias por área\n")    
     fichero.close()
+    '''
