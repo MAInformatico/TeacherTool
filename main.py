@@ -3,6 +3,7 @@ from colorama import Fore
 import numpy as np
 from docx import Document
 import docxedit
+import shutil
 
 
 def get_initial_data():
@@ -148,7 +149,36 @@ def get_info(average_overall,average_reading,average_listening,average_speaking,
                 average_use_english.append(np.mean(avg_use_english))
             
         #print(dict_results)
-        return language_level, dict_results
+        return language_level, dict_results, num_exam, students
+
+
+def generate_files(dict_notes):
+    valuetoclean = "np.float64("
+    if num_exam == 1:
+        document = Document('test.docx')
+        docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=0, new_string=str(dict_notes['Nombre']).replace('[\'','').replace('\']',''))
+        docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=1, new_string=str(dict_notes['Reading']).replace('[\'','').replace('\']',''))
+        docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=2, new_string=str(dict_notes['Use_English']).replace('[\'','').replace('\']',''))
+        docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=3, new_string=str(dict_notes['Writing']).replace('[\'','').replace('\']',''))
+        docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=4, new_string=str(dict_notes['Listening']).replace('[\'','').replace('\']',''))
+        docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=5, new_string=str(dict_notes['Speaking']).replace('[\'','').replace('\']',''))
+        docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=6, new_string=str(dict_notes['Overall']).replace(valuetoclean,'').replace(')','').replace('[','').replace(']',''))
+        document.save('test.docx')
+    elif num_exam > 1:
+        for i in range(1,num_exam):
+            shutil.copy('test.docx', 'test_'+ str(i)+'.docx')
+            document = Document('test_'+ str(i)+'.docx')
+            docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=0, new_string=str(dict_notes['Nombre']).replace('[\'','').replace('\']',''))
+            docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=1, new_string=str(dict_notes['Reading'][i]).replace('[\'','').replace('\']',''))
+            docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=2, new_string=str(dict_notes['Use_English'][i]).replace('[\'','').replace('\']',''))
+            docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=3, new_string=str(dict_notes['Writing'][i]).replace('[\'','').replace('\']',''))
+            docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=4, new_string=str(dict_notes['Listening'][i]).replace('[\'','').replace('\']',''))
+            docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=5, new_string=str(dict_notes['Speaking'][i]).replace('[\'','').replace('\']',''))
+            docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=6, new_string=str(dict_notes['Overall'][i]).replace(valuetoclean,'').replace(')','').replace('[','').replace(']',''))
+            document.save('test_'+ str(i)+'.docx')    
+    print(dict_notes)
+
+
 
 
 if __name__ == "__main__":
@@ -166,57 +196,7 @@ if __name__ == "__main__":
     #Showing info by terminal
     #========================
 
-    language_level, dict_notes = get_info(averageOverall,averageReading,averageListening,averageSpeaking,averageWriting,averageUseEnglish)        
-    '''
-    document = Document('test.docx')
-    docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=1, new_string='Hello')
-    document.save('test.docx')
-    '''
-
-    valuetoclean = "np.float64("
-
-    document = Document('test.docx')
-    docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=0, new_string=str(dict_notes['Nombre']).replace('[\'','').replace('\']',''))
-    docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=1, new_string=str(dict_notes['Reading']).replace('[\'','').replace('\']',''))
-    docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=2, new_string=str(dict_notes['Use_English']).replace('[\'','').replace('\']',''))
-    docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=3, new_string=str(dict_notes['Writing']).replace('[\'','').replace('\']',''))
-    docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=4, new_string=str(dict_notes['Listening']).replace('[\'','').replace('\']',''))
-    docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=5, new_string=str(dict_notes['Speaking']).replace('[\'','').replace('\']',''))
-    docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=6, new_string=str(dict_notes['Overall']).replace(valuetoclean,'').replace(')','').replace('[','').replace(']',''))
-
-
-    
-    '''
-    fichero = open('Examenes.txt', 'w')
-    fichero.write("Estos son los resultados de los examenes o del examen que has insertado:\n")
-    fichero.write('\n'.join("{}: {}".format(k, v) for k, v in dict_notes.items()))    
-    fichero.write("\n")
-    fichero.write("\n")
-    fichero.write("Los alumnos han obtenido las siguientes medias por área:\n")
-    fichero.write(str(dict_notes['Nombre']))
-    
-    fichero.write("\n")
-    fichero.write("Reading:")
-    fichero.write(str(averageReading).replace(valuetoclean,'').replace(')',''))
-    fichero.write("\n")
-    fichero.write("Listening:")
-    fichero.write(str(averageListening).replace(valuetoclean,'').replace(')',''))
-    fichero.write("\n")
-    fichero.write("Writing:")
-    fichero.write(str(averageWriting).replace(valuetoclean,'').replace(')',''))
-    fichero.write("\n")
-    fichero.write("Speaking:")
-    fichero.write(str(averageSpeaking).replace(valuetoclean,'').replace(')',''))
-    fichero.write("\n")
-    if language_level[0] != 'B1':
-        fichero.write("English Use:")
-        fichero.write(str(averageUseEnglish).replace(valuetoclean,'').replace(')',''))
-        fichero.write("\n")
-    fichero.write("Overall:")
-    fichero.write(str(averageOverall).replace(valuetoclean,'').replace(')',''))
-    fichero.write("\n")
-    fichero.write("Fin de las medias por área\n")    
-    fichero.close()
-    '''
-    document.save('test.docx')
-    
+    language_level, dict_notes, num_exam, students = get_info(averageOverall,averageReading,averageListening,averageSpeaking,averageWriting,averageUseEnglish)        
+    #Generate files with results
+    generate_files(dict_notes)
+    #print(averageReading)
