@@ -176,20 +176,7 @@ def generate_files(dict_notes):
             docxedit.add_text_in_table(document.tables[0], row_num=i+1, column_num=5, new_string=str(dict_notes['Speaking'][i]).replace('[\'','').replace('\']',''))
             docxedit.add_text_in_table(document.tables[0], row_num=i+1, column_num=6, new_string=str(dict_notes['Overall'][i]).replace(valuetoclean,'').replace(')','').replace('[','').replace(']',''))
         document.save('test.docx')
-
-    elif num_exam > 1:
-        for i in range(1,num_exam):
-            shutil.copy(name_file, 'test_'+ str(i)+'.docx')
-            document = Document('test_'+ str(i)+'.docx')
-            docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=0, new_string=str(dict_notes['Nombre']).replace('[\'','').replace('\']',''))
-            docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=1, new_string=str(dict_notes['Reading'][i]).replace('[\'','').replace('\']',''))
-            docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=2, new_string=str(dict_notes['Use_English'][i]).replace('[\'','').replace('\']',''))
-            docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=3, new_string=str(dict_notes['Writing'][i]).replace('[\'','').replace('\']',''))
-            docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=4, new_string=str(dict_notes['Listening'][i]).replace('[\'','').replace('\']',''))
-            docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=5, new_string=str(dict_notes['Speaking'][i]).replace('[\'','').replace('\']',''))
-            docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=6, new_string=str(dict_notes['Overall'][i]).replace(valuetoclean,'').replace(')','').replace('[','').replace(']',''))
-            document.save('test_'+ str(i)+'.docx')    
-    print(dict_notes)
+    
 
 
 
