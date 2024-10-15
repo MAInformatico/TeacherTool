@@ -3,7 +3,6 @@ from colorama import Fore
 from docx import Document
 import docxedit
 import numpy as np
-import shutil
 
 class FileGenerator():
 
@@ -65,11 +64,9 @@ class FileGenerator():
                     else:
                         reading = instance.filter(aux)
                         result = instance.percent_category(int(reading[0]),int(reading[1]))
-                    #print(result)
                         average_test.append(result)
                         avg_reading.append(result)
                         dict_results['Reading'].append(str(aux))
-                    #dict_results['Reading'].append(str(reading) + ' = ' + str(result))
                     #Listening
                     print(Fore.YELLOW + 'Listening')
                     print(underline)
@@ -77,16 +74,13 @@ class FileGenerator():
                     aux = str(input())                
                     if not aux:
                         result = 'X'
-                        #dict_results['Listening'].append(str(aux) + ' = ' + str(result))
                         dict_results['Listening'].append(str(aux))
                     else:
                         listening = instance.filter(aux)
                         result = instance.percent_category(listening[0],listening[1])
                         average_test.append(result)
                         avg_listening.append(result)
-                    #dict_results['Listening'].append(str(aux))
                         dict_results['Listening'].append(str(aux))
-                    #dict_results['Listening'].append(str(listening) + ' = ' + str(result))
                     #Writting
                     print(Fore.BLUE + 'Writing')
                     print(underline)
@@ -100,9 +94,7 @@ class FileGenerator():
                         result = instance.percent_category(writing[0],writing[1])
                         average_test.append(result)
                         avg_writing.append(result)
-                        #dict_results['Writing'].append(str(aux))
                         dict_results['Writing'].append(str(aux))
-                    #dict_results['Writing'].append(str(writing) + ' = ' + str(result))
                     #Speaking
                     print(Fore.GREEN + 'Speaking')
                     print(underline)
@@ -116,9 +108,7 @@ class FileGenerator():
                         result = instance.percent_category(speaking[0],speaking[1])
                         average_test.append(result)
                         avg_speaking.append(result)
-                    #dict_results['Speaking'].append(aux)
                         dict_results['Speaking'].append(str(aux))
-                    #dict_results['Speaking'].append(str(speaking) + ' = ' + str(result))
                     if (language_level[0] == "B2" and language_level[1] == 2) or (language_level[0] == "C1"):
                         #English use
                         print(Fore.WHITE + 'English use')
@@ -133,9 +123,7 @@ class FileGenerator():
                             result = instance.percent_category(english_use[0],english_use[1])
                             average_test.append(result)
                             avg_use_english.append(result)
-                        #dict_results['English_use'].append(aux)
                             dict_results['Use_English'].append(str(aux))
-                        #dict_results['English_use'].append(str(english_use) + ' = ' + str(result))
                     else: #It is a B1 exam
                         dict_results['Use_English'].append(str('X'))
                     #calculate average and insert in Overall array
@@ -149,7 +137,6 @@ class FileGenerator():
                 if (language_level[0] == "B2" and language_level[1] == 2) or (language_level[0] == "C1"):
                     average_use_english.append(np.mean(avg_use_english))
                 
-            #print(dict_results)
             return language_level, dict_results, num_exam, students
 
 
