@@ -16,4 +16,5 @@ if __name__ == "__main__":
 
     generator = FileGenerator()
     language_level, dict_notes, num_exam, students = generator.get_info(averageOverall,averageReading,averageListening,averageSpeaking,averageWriting,averageUseEnglish)        
-    generator.generate_files(dict_notes, num_exam)
+    result_file = generator.generate_files(dict_notes, num_exam)
+    generator.change_name_file(result_file)
