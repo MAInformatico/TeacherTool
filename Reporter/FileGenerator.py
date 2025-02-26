@@ -3,8 +3,6 @@ from colorama import Fore
 from docx import Document
 import docxedit
 import numpy as np
-from datetime import datetime
-import os
 
 class FileGenerator():
 
@@ -144,7 +142,8 @@ class FileGenerator():
 
 
     def generate_files(self,dict_notes,num_exam):
-        valuetoclean = "np.float64("        
+        valuetoclean = "np.float64("
+        name_file = 'test' + str(datetime.now()) +'.docx'
         name_file = 'test.docx'
         if num_exam == 1 and len(dict_notes['Nombre']) == 1:
             document = Document(name_file)
@@ -167,9 +166,6 @@ class FileGenerator():
                 docxedit.add_text_in_table(document.tables[0], row_num=i+1, column_num=5, new_string=str(dict_notes['Speaking'][i]).replace('[\'','').replace('\']',''))
                 docxedit.add_text_in_table(document.tables[0], row_num=i+1, column_num=6, new_string=str(dict_notes['Overall'][i]).replace(valuetoclean,'').replace(')','').replace('[','').replace(']',''))
             document.save(name_file)
-            return name_file
-
-    def change_name_file(name_file):
         file_oldname = os.path.join(str(os.getcwd()), name_file)
         file_newname_newfile = os.path.join(str(os.getcwd()), "test" + str(datetime.now()) + ".docx")
         os.rename(file_oldname, file_newname_newfile)
