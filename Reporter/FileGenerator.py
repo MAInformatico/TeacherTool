@@ -3,6 +3,8 @@ from colorama import Fore
 from docx import Document
 import docxedit
 import numpy as np
+import os
+from datetime import datetime
 
 class FileGenerator():
 
@@ -142,8 +144,7 @@ class FileGenerator():
 
 
     def generate_files(self,dict_notes,num_exam):
-        valuetoclean = "np.float64("
-        name_file = 'test' + str(datetime.now()) +'.docx'
+        valuetoclean = "np.float64("        
         name_file = 'test.docx'
         if num_exam == 1 and len(dict_notes['Nombre']) == 1:
             document = Document(name_file)
