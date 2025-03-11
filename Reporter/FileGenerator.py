@@ -3,7 +3,6 @@ from colorama import Fore
 from docx import Document
 import docxedit
 import numpy as np
-from datetime import datetime
 import os
 import shutil
 
@@ -180,5 +179,9 @@ class FileGenerator():
         file_oldname = os.path.join(str(os.getcwd()), name_file)
         file_newname_newfile = os.path.join(str(os.getcwd()), "test_results" + ".docx")
         os.rename(file_oldname, file_newname_newfile)
+<<<<<<< HEAD
         shutil.copy(file_newname_newfile, os.path.join(str(os.getcwd()), "test.docx"))
         return file_newname_newfile
+=======
+        print(file_newname_newfile)
+>>>>>>> 496192f447ef066c96f2824c53da0664e1268830
