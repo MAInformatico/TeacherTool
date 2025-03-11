@@ -5,23 +5,34 @@ import docxedit
 import numpy as np
 from datetime import datetime
 import os
+import shutil
 
 class FileGenerator():
+
+    def __init__(self, language_level=None, students=None, num_exam=None):
+        self.language_level = language_level
+        self.students = students
+        self.num_exam = num_exam
 
     def get_initial_data(self):
         language_level = [" "]
         print("¿Cuántos alumnos tienes?")
-        students = int(input())
+        if self.students:
+            students = self.students
+        else:
+            students = int(input())            
         print('¿Cuántos exámenes quieres evaluar?')
-        num_exam = int(input())
-        while(language_level[0] != "B1" and language_level[0] != "B2" and language_level[0] != "C1"):
-            print("¿Se presentan a B1, B2 o C1?")
-            language_level[0] = str(input())
-            print(language_level[0])
-            if language_level[0] == "B2" or language_level[0] == "C1":
-                print("¿Son alumnos de primer o segundo año? (escribe 1 o 2)")
-                language_level.append(int(input()))
-        
+        if self.num_exam:
+            num_exam = self.num_exam
+        else:
+            num_exam = int(input())           
+            while(language_level[0] != "B1" and language_level[0] != "B2" and language_level[0] != "C1"):
+                print("¿Se presentan a B1, B2 o C1?")
+                language_level[0] = str(input())
+                print(language_level[0])
+                if language_level[0] == "B2" or language_level[0] == "C1":
+                    print("¿Son alumnos de primer o segundo año? (escribe 1 o 2)")
+                    language_level.append(int(input()))        
         return language_level, students, num_exam
 
 
@@ -30,7 +41,7 @@ class FileGenerator():
             language_level, students, num_exam = self.get_initial_data()
             
             dict_results = {
-                'Nombre' : [],
+                'Name' : [],
                 'Reading': [],
                 'Listening': [],
                 'Writing': [],
@@ -44,9 +55,9 @@ class FileGenerator():
             
 
             for students in range(0,students):
-                print(Fore.WHITE + "Nombre del alumno")
+                print(Fore.WHITE + "Name del alumno")
                 name = str(input())
-                dict_results['Nombre'].append(name)
+                dict_results['Name'].append(name)
                 instance = B2(name,num_exam)
                 avg_reading = []
                 avg_listening = []
@@ -61,7 +72,6 @@ class FileGenerator():
                     print(text)
                     aux = str(input())
                     if not aux:
-                        result = 'X'
                         dict_results['Reading'].append(str(aux))
                     else:
                         reading = instance.filter(aux)
@@ -77,7 +87,6 @@ class FileGenerator():
                     if not aux:
                         result = 'X'
                         dict_results['Listening'].append(str(aux))
-                    else:
                         listening = instance.filter(aux)
                         result = instance.percent_category(listening[0],listening[1])
                         average_test.append(result)
@@ -144,12 +153,12 @@ class FileGenerator():
 
 
     def generate_files(self,dict_notes,num_exam):
-        valuetoclean = "np.float64("
-        name_file = 'test' + str(datetime.now()) +'.docx'
+        valuetoclean = "np.float64("        
         name_file = 'test.docx'
-        if num_exam == 1 and len(dict_notes['Nombre']) == 1:
+        print(dict_notes)
+        if num_exam == 1 and len(dict_notes['Name']) == 1:
             document = Document(name_file)
-            docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=0, new_string=str(dict_notes['Nombre']).replace('[\'','').replace('\']',''))
+            docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=0, new_string=str(dict_notes['Name']).replace('[\'','').replace('\']',''))
             docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=1, new_string=str(dict_notes['Reading']).replace('[\'','').replace('\']',''))
             docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=2, new_string=str(dict_notes['Use_English']).replace('[\'','').replace('\']',''))
             docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=3, new_string=str(dict_notes['Writing']).replace('[\'','').replace('\']',''))
@@ -157,10 +166,10 @@ class FileGenerator():
             docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=5, new_string=str(dict_notes['Speaking']).replace('[\'','').replace('\']',''))
             docxedit.add_text_in_table(document.tables[0], row_num=1, column_num=6, new_string=str(dict_notes['Overall']).replace(valuetoclean,'').replace(')','').replace('[','').replace(']',''))
             document.save(name_file)
-        elif num_exam == 1 and len(dict_notes['Nombre']) > 1:
+        elif num_exam == 1 and len(dict_notes['Name']) > 1:
             document = Document(name_file)
-            for i in range(0,len(dict_notes['Nombre'])):            
-                docxedit.add_text_in_table(document.tables[0], row_num=i+1, column_num=0, new_string=str(dict_notes['Nombre'][i]).replace('[\'','').replace('\']',''))
+            for i in range(0,len(dict_notes['Name'])):            
+                docxedit.add_text_in_table(document.tables[0], row_num=i+1, column_num=0, new_string=str(dict_notes['Name'][i]).replace('[\'','').replace('\']',''))
                 docxedit.add_text_in_table(document.tables[0], row_num=i+1, column_num=1, new_string=str(dict_notes['Reading'][i]).replace('[\'','').replace('\']',''))
                 docxedit.add_text_in_table(document.tables[0], row_num=i+1, column_num=2, new_string=str(dict_notes['Use_English'][i]).replace('[\'','').replace('\']',''))
                 docxedit.add_text_in_table(document.tables[0], row_num=i+1, column_num=3, new_string=str(dict_notes['Writing'][i]).replace('[\'','').replace('\']',''))
@@ -169,6 +178,7 @@ class FileGenerator():
                 docxedit.add_text_in_table(document.tables[0], row_num=i+1, column_num=6, new_string=str(dict_notes['Overall'][i]).replace(valuetoclean,'').replace(')','').replace('[','').replace(']',''))
             document.save(name_file)
         file_oldname = os.path.join(str(os.getcwd()), name_file)
-        file_newname_newfile = os.path.join(str(os.getcwd()), "test" + str(datetime.now()) + ".docx")
+        file_newname_newfile = os.path.join(str(os.getcwd()), "test_results" + ".docx")
         os.rename(file_oldname, file_newname_newfile)
-        print(file_newname_newfile)
+        shutil.copy(file_newname_newfile, os.path.join(str(os.getcwd()), "test.docx"))
+        return file_newname_newfile
