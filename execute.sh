@@ -1,1 +1,1 @@
-fastapi dev main.py
+fastapi dev fastapi_main.py
