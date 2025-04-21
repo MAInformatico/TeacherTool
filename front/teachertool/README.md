@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Frontend Teacher Tool
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the frontend of the app developed using ReactJS
 
 ## Available Scripts
 
