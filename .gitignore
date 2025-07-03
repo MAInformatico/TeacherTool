@@ -4,3 +4,4 @@ __pycache__
 *.docx
 json.txt
 *.txt
+reader_average.py
