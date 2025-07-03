@@ -175,7 +175,7 @@ class FileGenerator():
                 docxedit.add_text_in_table(document.tables[0], row_num=i+1, column_num=6, new_string=str(dict_notes['Overall'][i]).replace(valuetoclean,'').replace(')','').replace('[','').replace(']',''))
             document.save(name_file)
         file_oldname = os.path.join(str(os.getcwd()), name_file)
-        file_newname_newfile = os.path.join(str(os.getcwd()), "test_results" + ".docx")
+        file_newname_newfile = os.path.join(str(os.getcwd()), "test_results " + ".docx")
         os.rename(file_oldname, file_newname_newfile)
         shutil.copy(file_newname_newfile, os.path.join(str(os.getcwd()), "test.docx"))
         return file_newname_newfile        
