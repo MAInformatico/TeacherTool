@@ -5,3 +5,4 @@ __pycache__
 json.txt
 *.txt
 reader_average.py
+.vscode
