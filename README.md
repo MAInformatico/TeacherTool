@@ -1,21 +1,41 @@
 # TeacherTool
 
-**TeacherTool** is a web tool developed with **FastAPI** that helps **language teachers** calculate the grades for Cambridge exams that certify language proficiency levels (B1, B2, etc.). This application simplifies the grading process and enables educators to manage exam results quickly and efficiently.
+TeacherTool is a lightweight backend service built with FastAPI that automates a manual grading workflow used in language exam correction.
 
-## Features
+The goal of the project was to reduce repetitive manual work involved in calculating exam scores and generating structured reports in DOCX format.
 
-- **Automatic grade calculation**: Calculates grades for Cambridge exams for different language proficiency levels.
-- **RESTful API**: The app exposes an API that can be used by other tools or integrations.
-- **Easy installation**: Includes a script to quickly set up the project in your local environment.
-- **Export results to DOCX**: Students' exam results can be automatically exported to a `.docx` file for easy printing or record-keeping.
+## Problem
+
+Exam grading was previously handled manually, including score calculation across multiple assessment areas and generation of structured Word reports.
 
 
-## Technologies
+## Solution
+I built a simple REST API using FastAPI to centralize the grading logic and automate report generation.
 
-- **FastAPI**: A modern and fast web framework for Python.
-- **Python 3.x**: The primary programming language.
-- **Jinja2**: Templating engine used for rendering views.
-- **python-docx**: Library to generate `.docx` files.
+The system allows structured input of exam data and produces a formatted DOCX file with the results.
+
+## Design decisions
+
+Given the small scope of the project, I intentionally kept the architecture simple:
+
+* single-service backend (no microservices)
+* REST API exposed over HTTP for remote usage
+* server-side execution to centralize business logic and avoid client-side dependencies
+* containerized deployment using Docker to ensure a consistent and reproducible runtime environment
+* template-based DOCX generation for simplicity and maintainability
+
+The focus was on reducing complexity rather than building a highly scalable system.
+
+## Tech stack
+* FastAPI
+* Pydantic
+* Python
+* Jinja2
+* python-docx
+
+## Outcome
+
+The process was reduced from several manual steps per exam group to a single API call that generates the final DOCX report.
 
 ## Requirements
 
@@ -29,10 +49,9 @@ Additionally, you need to have a `test.docx` file with a pre-created table struc
 - Column 4: Writing
 - Column 5: Listening
 - Column 6: Speaking
-- Column 7: Overrall
+- Column 7: Overall
 
-**Recommended platforms**: It is recommended to run this project on **Linux** or **Windows** for the best compatibility. 
-
+The application runs on a server and is consumed remotely through a REST API.
 
 ## Installation
 
