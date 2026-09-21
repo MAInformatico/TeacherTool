@@ -29,7 +29,7 @@ Additionally, you need to have a `test.docx` file with a pre-created table struc
 - Column 4: Writing
 - Column 5: Listening
 - Column 6: Speaking
-- Column 7: Overrall
+- Column 7: Overall
 
 **Recommended platforms**: It is recommended to run this project on **Linux** or **Windows** for the best compatibility. 
 
@@ -63,3 +63,26 @@ Using the .sh script:
 ./execute.sh
 ```
 
+## Tests
+Launching tests:
+```bash
+pytest
+```
+
+## Run with Docker
+```bash
+docker build -t teachertool .
+docker run -p 8000:8000 teachertool
+```
+
+## What I learned
+
+- Designing a simple API to solve a real workflow problem.
+- Using Jinja2 templates to generate structured DOCX documents.
+- Keeping architecture simple for small projects.
+
+## Future work
+
+- Add authentication for multi-user access.
+- Add more tests for edge cases.
+- Add a Docker Compose file for easier deployment.
