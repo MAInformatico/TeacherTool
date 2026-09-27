@@ -50,7 +50,6 @@ Additionally, you need to have a `test.docx` file with a pre-created table struc
 - Column 5: Listening
 - Column 6: Speaking
 - Column 7: Overall
-- Column 7: Overall
 
 **Recommended platforms**: It is recommended to run this project on **Linux** or **Windows** for the best compatibility. 
 
